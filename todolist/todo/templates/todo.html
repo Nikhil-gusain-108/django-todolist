@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+{% block title %} TODO LIST {% endblock %}
+{% block content %}
+<form method = 'POST'>
+    {% csrf_token %}
+    {{form.todo}}
+    <button type = 'submit'>submit</button>
+</form>
+{% comment %} {{tasks}} {% endcomment %}
+     {% if len != 0 %}
+     <div class="list-group tasks">
+     {% for tas in tasks %}
+        <div class="{{tas}}">
+          <label class="list-group-item d-flex gap-3 editable_form">
+            <input class="form-check-input flex-shrink-0 " type="checkbox"  style="font-size: 1.375em;">
+            <span class="pt-1 form-checked-content">
+             <p class = "editable" ><strong>{{tas}} </strong></p>
+              <small class="d-block text-body-secondary">
+                <svg class="bi me-1" width="1em" height="1em"><use xlink:href="#calendar-event"></use></svg>
+              </small>
+            </span>
+            <div>
+              <button onclick = switcher("{{tas}}")>E</button>
+              <a class="btn btn-danger" href= "{% url 'delete' tas.id%}" > X </a>
+            </div>
+          </label>
+        </div>
+
+
+        <div class ="{{tas}} d-none">
+          <label class="list-group-item d-flex gap-3">
+            <input class="form-check-input flex-shrink-0 " type="checkbox"  style="font-size: 1.375em;">
+            <span class="pt-1 form-checked-content ">
+              <form method="post" action = "{% url 'update' tas.id%}"> {% csrf_token %} {{form.update}}
+                <button type = "submit">E</button>
+              </form>
+              
+              <small class="d-block text-body-secondary">
+                <svg class="bi me-1" width="1em" height="1em"><use xlink:href="#calendar-event"></use></svg>
+              
+              </small>
+            </span>
+            <div>
+              
+              <a class="btn btn-danger" href= "{% url 'delete' tas.id%}" > X </a>
+            </div>
+          </label>
+        </div>
+
+        {% endfor %}
+    </div>
+     {% endif %}
+{% endblock %}

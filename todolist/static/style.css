@@ -1,0 +1,33 @@
+* {
+    display: inline;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    background-color: rgb(39, 39, 196);
+    flex-direction: column;
+}
+.tasks {
+    margin-top: 20px;
+    border: 1px solid black;
+}
+.box {
+    height: 80%;
+    width: 3%;
+    margin-left: 100px;
+    border: 1px solid black;
+    border-radius: 50%;
+    float: right;;
+}
+.hidden{
+    display: none;
+}
+.edit{
+    margin-left: 50vw;
+    background-color: green;
+}
+.delete{
+    background-color: red;
+}
